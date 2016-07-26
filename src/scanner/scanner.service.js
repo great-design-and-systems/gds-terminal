@@ -9,14 +9,19 @@
 
     function ScannerService(vendors, PROTOCOL, HOST, PORT) {
         var server = PROTOCOL + '://' + HOST + ':' + PORT;
+      
+            
         return {
             startScanner: startScanner
         }
 
         function startScanner() {
-            var socket = new vendors.Socket(server);
-            socket.on('scanned', function (info) {
-                alert('scanned ' + info);
+            var socket = new vendors.Socket();
+            socket.connect(server);
+            socket.on('connection', function() {
+                socket.on('scanned', function (info) {
+                    alert('scanned ' + info);
+                });
             });
         }
     }
