@@ -1,0 +1,10 @@
+home h2,
+home p {
+	color: #fff;
+}
+
+.home.btn {
+	background-color: #140a46;
+	border-color: #140b40;
+	color: #fff;	
+}

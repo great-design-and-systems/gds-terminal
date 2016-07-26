@@ -1,0 +1,39 @@
+body {
+	background-color: #bf9b30;
+}
+.main-wrap {
+	padding: 15px;
+}
+.main-wrap h1 {
+	color: #fff;
+	font-size: 150%;
+    margin: 0;
+}
+.logo {
+	text-align: center;
+}
+
+.time-in.btn,
+.log.btn  {
+	background-color: #322864;
+	border-color: #140b40;
+	color: #fff;
+}
+.time-in.btn:hover {
+	background-color: #140a46;
+	border-color: #140b40;
+	color: #fff;
+}
+.form-control {
+	margin-bottom: 15px;
+}
+.no-padding-right {
+	padding-right: 0 !important;
+}
+.profile-img img {
+	width: 100%;
+	margin-bottom: 15px;
+}
+.sub-heading {
+	font-size: 150%;
+}

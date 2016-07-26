@@ -1,0 +1,27 @@
+{
+  "name": "gds-terminal",
+  "authors": [
+    "rickzx98 <rickzx98@gmail.com>"
+  ],
+  "description": "GDS Terminal",
+  "main": "index.html",
+  "keywords": [
+    "gds-terminal"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "jquery": "^3.1.0",
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  }
+}
