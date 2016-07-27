@@ -16,6 +16,7 @@
 		barCode.$onInit = onInit;
 		barCode.onSelectPurpose = onSelectPurpose;
 		barCode.backToHome = backToHome;
+		barCode.isSubmitting = false;
 
 		function onInit() {
 			vendors.pace.restart();
@@ -45,6 +46,8 @@
 
 		function onSelectPurpose() {
 			if (barCode.entry.purpose) {
+				vendors.pace.restart();
+				barCode.isSubmitting = true;
 				BarcodeResourceService.checkInPurpose(barCode.timeInId, barCode.entry.purpose, function(err, result) {
 					if (err) {
 						console.error('err', err);
@@ -52,6 +55,8 @@
 					} else {
 						backToHome();
 					}
+					barCode.isSubmitting = false;
+					vendors.pace.stop();
 				});
 			}
 		}

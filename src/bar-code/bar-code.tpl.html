@@ -16,7 +16,7 @@
 					<p class="department sub-heading">{{barCode.entry.department}}</p>
 					<div class="row">
 						<div class="col-md-12 no-padding-right">
-							<button type="button" class="time-in btn btn-default btn-block btn-lg" ng-click="barCode.backToHome()">Time In</button>
+							<button  ng-disabled="barCode.isSubmitting" type="button" class="time-in btn btn-default btn-block btn-lg" ng-click="barCode.backToHome()">Time In</button>
 						</div>
 					</div>
 				</form>
