@@ -16,10 +16,10 @@ var appTasks = new require('./gulp-tasks/app-tasks')(gulp);
 new require('./gulp-tasks/vendor-tasks')(gulp);
 
 gulp.task('default', function() {
-  runSequence('vendor-build', 'app-build', 'html-prod');
+  runSequence('vendor-build', 'set-contant-values', 'app-build', 'html-prod');
 });
 gulp.task('debug', function() {
-  runSequence('vendor-debug', 'app-debug', 'html-dev');
+  runSequence('vendor-debug', 'set-contant-values', 'app-debug', 'html-dev');
 })
 gulp.task('html-dev', function() {
   return gulp.src('html-build/index.html')
@@ -53,5 +53,5 @@ gulp.task('set-contant-values', function() {
     .pipe(replace('#CONFIG_HOST', CONFIG_HOST))
     .pipe(replace('#CONFIG_PORT', CONFIG_PORT))
     .pipe(replace('#CONFIG_CONTEXT', CONFIG_CONTEXT))
-    .pipe(gulp.dest('src/app/app.constant.js'));
+    .pipe(gulp.dest('src/app/'));
 });

@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp": "node ./node_modules/.bin/gulp",
     "bower": "node ./node_modules/.bin/bower",
-    "postinstall": "bower update -V"
+    "postinstall": "bower update -V && gulp",
+    "server": "node ./node_modules/.bin/http-server",
+    "start": "npm run server"
   },
   "repository": {
     "type": "git",
