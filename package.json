@@ -1,0 +1,30 @@
+{
+  "name": "gds-terminal",
+  "version": "0.1.0",
+  "description": "GDS terminal interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "node ./node_modules/.bin/gulp",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/great-design-and-systems/gds-terminal.git"
+  },
+  "keywords": [
+    "gds-terminal"
+  ],
+  "author": "Jerico de Guzman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/great-design-and-systems/gds-terminal/issues"
+  },
+  "homepage": "https://github.com/great-design-and-systems/gds-terminal#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.2",
+    "run-sequence": "^1.2.2"
+  }
+}
