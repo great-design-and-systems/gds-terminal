@@ -3,27 +3,31 @@
     angular.module('gdsApp')
         .config(AppRoute);
 
-    AppRoute.$inject = ['$routeProvider'];
-    function AppRoute($routeProvider) {
-        $routeProvider
-            .when('/home', {
+    AppRoute.$inject = ['$stateProvider', '$urlRouterProvider'];
+    function AppRoute($stateProvider, $urlRouterProvider) {
+      $urlRouterProvider.otherwise('/home');
+      
+        $stateProvider
+            .state('home', {
+                url: "/home",
                 template: '<home></home>'
             })
-            .when('/time-in', {
+            .state('timeIn', {
+                url:'/time-in',
                 template: '<time-in></time-in>'
             })
-            .when('/bar-code/:timeInID', {
+            .state('barcode', {
+                url:'/bar-code/:timeInID',
                 template: '<bar-code time-in-id="barCode.param.timeInID"></bar-code>',
                 controller: ExposeRouteParams,
                 controllerAs: 'barCode'
             });
     }
-    ExposeRouteParams.$inject = ['$routeParams'];
-    function ExposeRouteParams($routeParams) {
+  
+    ExposeRouteParams.$inject = ['$stateParams'];
+    function ExposeRouteParams($stateParams) {
         var exposedRoute = this;
-        exposedRoute.param = $routeParams;
-
-        console.log('exposedRoute', exposedRoute);
+        exposedRoute.param = $stateParams;
     }
 
 })();

@@ -1,8 +1,8 @@
 (function () {
     'use strict';
     angular.module('gdsApp')
-        .constant('SCANNER_PROTOCOL', 'http')
-        .constant('SCANNER_HOST', 'localhost')
-        .constant('SCANNER_PORT', 8080)
+        .constant('SCANNER_PROTOCOL', 'https')
+        .constant('SCANNER_HOST', 'gds-ms-api.herokuapp.com')
+        .constant('SCANNER_PORT', '')
         .constant('SCANNER_CONTEXT', '/gds/scanner/');
 })();
