@@ -12,9 +12,18 @@
             .when('/time-in', {
                 template: '<time-in></time-in>'
             })
-            .when('/bar-code', {
-                template: '<bar-code></bar-code>'
+            .when('/bar-code/:timeInID', {
+                template: '<bar-code time-in-id="barCode.param.timeInID"></bar-code>',
+                controller: ExposeRouteParams,
+                controllerAs: 'barCode'
             });
+    }
+    ExposeRouteParams.$inject = ['$routeParams'];
+    function ExposeRouteParams($routeParams) {
+        var exposedRoute = this;
+        exposedRoute.param = $routeParams;
+
+        console.log('exposedRoute', exposedRoute);
     }
 
 })();
