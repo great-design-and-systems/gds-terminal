@@ -1,27 +1,22 @@
 <div class="col-md-6 col-md-offset-3 bar-code step active">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2 text-center">
-			<h2>Hi {{barCode.entry.fullName}}</h2>
+			<h2>{{barCode.entry.fullname}}</h2>
 			<div class="text-center">
 				<form role="form" ng-submit="barCode.barCodeTimeIn(user)">
-					<select name="purpose" ng-model="barCode.user.purpose" class="form-control input-lg">
+					<select name="purpose" ng-model="barCode.entry.purpose" ng-change='barCode.onSelectPurpose()' class="form-control input-lg">
 						<option disabled="disabled" selected="selected">Select a Purpose</option>
-						<option value="purpose-1">Purpose 1</option>
-						<option value="purpose-2">Purpose 2</option>
-						<option value="purpose-3">Purpose 3</option>
+						<option ng-repeat="purpose in barCode.purposes" value="{{purpose.value}}">{{purpose.label}}</option>
 					</select>
-					<div class="row">											
+					<div class="row">
 						<div class="col-md-8 col-md-offset-2 profile-img">
-							<img ng-src="barCode.entry.image" alt="" />
-						</div>	
+							<img ng-src="img/default-profile.png" alt="" />
+						</div>
 					</div>
 					<p class="department sub-heading">{{barCode.entry.department}}</p>
 					<div class="row">
-						<div class="col-md-6 no-padding-right">
-							<button type="button" class="time-in btn btn-default btn-block btn-lg">Time In</button>
-						</div>
-						<div class="col-md-6">
-							<buton type="submit" class="log btn btn-default btn-block btn-lg">Log</button>
+						<div class="col-md-12 no-padding-right">
+							<button type="button" class="time-in btn btn-default btn-block btn-lg" ng-click="barCode.backToHome()">Time In</button>
 						</div>
 					</div>
 				</form>

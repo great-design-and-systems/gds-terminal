@@ -9,19 +9,19 @@
 
 	<title>GDS Terminal</title>
 
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="src/app.css">
-
+	<link rel="stylesheet" href="dist/vendors.css">
+	<link rel="stylesheet" href="dist/app.css">
 </head>
 
 <body>
 	<div class="main-wrap" ng-cloak>
-		<h1>Attendance Tracker</h1>
 		<div class="logo container-fluid">
 			<div class="row">
+				<app-clock></app-clock>
 				<div class="col-md-4 col-md-offset-4">
 					<img src="img/logo.png" alt="" />
 				</div>
+				<alert-list></alert-list>
 			</div>
 		</div>
 		<div id="steps" class="container-fluid">
@@ -30,24 +30,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- libraries -->
-	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="bower_components/angular/angular.js"></script>
-	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-	<script src="bower_components/angular-resource/angular-resource.js"></script>
-	<script src="bower_components/socket.io-client/socket.io.js"></script>
-	<!-- libraries end -->
-	<script src="src/app/app.module.js"></script>
-	<script src="src/app/app.route.js"></script>
-	<script src="src/app/app.vendor.js"></script>
-	<script src="src/app/app.constant.js"></script>
-	<script src="src/time-in/time-in.service.js"></script>
-	<script src="src/time-in/time-in.component.js"></script>
-	<script src="src/bar-code/bar-code.component.js"></script>
-	<script src="src/bar-code/bar-code-resource.service.js"></script>
-	<script src="src/home/home.component.js"></script>
-	<script src="src/scanner/scanner.service.js"></script>
-</body>
+	<script src="dist/vendors.js"></script>
+	<script src="src/app/app.module.js"></script>	<script src="src/app/app.constant.js"></script>	<script src="src/app/app.route.js"></script>	<script src="src/app/app.vendor.js"></script>	<script src="src/app/app.clock.directive.js"></script>	<script src="src/bar-code/bar-code-resource.service.js"></script>	<script src="src/bar-code/bar-code.component.js"></script>	<script src="src/home/home.component.js"></script>	<script src="src/purpose/purpose-resource.service.js"></script>	<script src="src/scanner/scanner.service.js"></script>	<script src="src/time-in/time-in.service.js"></script>	<script src="src/time-in/time-in.component.js"></script></body>
 
 </html>

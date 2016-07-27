@@ -1,73 +1,57 @@
+'use strict';
+var SCANNER_PROTOCOL = process.env.SCANNER_PROTOCOL || 'https';
+var SCANNER_HOST = process.env.SCANNER_HOST || 'gds-ms-api.herokuapp.com';
+var SCANNER_PORT = process.env.SCANNER_PORT || '';
+var SCANNER_CONTEXT = process.env.SCANNER_CONTEXT || '/gds/scanner/';
+var CONFIG_PROTOCOL = process.env.CONFIG_PROTOCOL || '';
+var CONFIG_HOST = process.env.CONFIG_HOST || '';
+var CONFIG_PORT = process.env.CONFIG_PORT || '';
+var CONFIG_CONTEXT = process.env.CONFIG_CONTEXT || '/gds/config/';
+
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var pump = require('pump');
-var uglify = require('gulp-uglify');
-
-var SRC_JS = [
-  'src/app/app.module.js',
-  'src/**/*.js'
-];
-var SASS_INDEX = 'src/app.scss';
-var SRC_SASS = 'src/**/*.scss';
-
-var LIB_JS = [
-  'bower_components/angular/angular.js',
-  'bower_components/angular-resource/angular-resource.js',
-  'bower_components/angular-ui-router/release/angular-ui-router.js',
-  'bower_components/bootstrap/dist/js/bootstrap.js',
-  'bower_components/jquery/dist/jquery.js',
-  'bower_components/socket.io-client/socket.io.js'
-];
-
-var LIB_CSS = [
-  'bower_components/bootstrap/dist/css/bootstrap.css'
-];
+var htmlreplace = require('gulp-html-replace');
+var replace = require('gulp-replace');
+var appTasks = new require('./gulp-tasks/app-tasks')(gulp);
+new require('./gulp-tasks/vendor-tasks')(gulp);
 
 gulp.task('default', function() {
-  runSequence('jshint');
+  runSequence('vendor-build', 'app-build', 'html-prod');
+});
+gulp.task('debug', function() {
+  runSequence('vendor-debug', 'app-debug', 'html-dev');
+})
+gulp.task('html-dev', function() {
+  return gulp.src('html-build/index.html')
+    .pipe(htmlreplace({
+      appJS: appTasks.SRC_JS,
+      appCSS: 'dist/app.css',
+      vendorJS: 'dist/vendors.js',
+      vendorCSS: 'dist/vendors.css'
+    }))
+    .pipe(gulp.dest('.'));
+})
+
+gulp.task('html-prod', function() {
+  return gulp.src('html-build/index.html')
+    .pipe(htmlreplace({
+      appJS: 'dist/release/app.js',
+      appCSS: 'dist/release/app.css',
+      vendorJS: 'dist/release/vendors.js',
+      vendorCSS: 'dist/release/vendors.css'
+    }))
+    .pipe(gulp.dest('.'));
 });
 
-gulp.task('jshint', function() {
-  return gulp.src(SRC_JS)
-    .pipe(jshint())
-    .pipe(jshint.reporter('default', {
-      verbose: true
-    }));
-});
-
-gulp.task('vendor-build', function() {
-  runSequence('scripts', 'css');
-});
-
-gulp.task('compress', function(cb) {
-  pump([
-    gulp.src('dist/*.js'),
-    uglify(),
-    gulp.dest('dist')
-  ], cb);
-});
-
-gulp.task('scripts', function() {
-  return gulp.src(LIB_JS)
-    .pipe(concat('vendors.js'))
-    .pipe(gulp.dest('./dist/'));
-});
-
-gulp.task('css', function() {
-  return gulp.src(LIB_CSS)
-    .pipe(concat('vendors.css'))
-    .pipe(gulp.dest('./dist/'));
-});
-
-gulp.task('sass', function() {
-  return gulp.src(SRC_SASS)
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./dist/app.css'));
-});
-
-gulp.task('sass:watch', function() {
-  gulp.watch(SRC_SASS, ['sass']);
+gulp.task('set-contant-values', function() {
+  gulp.src(['html-build/app.constant.js'])
+    .pipe(replace('#SCANNER_PROTOCOL', SCANNER_PROTOCOL))
+    .pipe(replace('#SCANNER_HOST', SCANNER_HOST))
+    .pipe(replace('#SCANNER_PORT', SCANNER_PORT))
+    .pipe(replace('#SCANNER_CONTEXT', SCANNER_CONTEXT))
+    .pipe(replace('#CONFIG_PROTOCOL', CONFIG_PROTOCOL))
+    .pipe(replace('#CONFIG_HOST', CONFIG_HOST))
+    .pipe(replace('#CONFIG_PORT', CONFIG_PORT))
+    .pipe(replace('#CONFIG_CONTEXT', CONFIG_CONTEXT))
+    .pipe(gulp.dest('src/app/app.constant.js'));
 });

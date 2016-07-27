@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="gdsApp">
+
+<head>
+	<base href=".">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>GDS Terminal</title>
+
+	<!-- build:vendorCSS -->
+	<!-- endbuild -->
+	<!-- build:appCSS -->
+	<!-- endbuild -->
+
+</head>
+
+<body>
+	<div class="main-wrap" ng-cloak>
+		<div class="logo container-fluid">
+			<div class="row">
+				<app-clock></app-clock>
+				<div class="col-md-4 col-md-offset-4">
+					<img src="img/logo.png" alt="" />
+				</div>
+				<alert-list></alert-list>
+			</div>
+		</div>
+		<div id="steps" class="container-fluid">
+			<div class="row">
+				<ui-view></ui-view>
+			</div>
+		</div>
+	</div>
+	<!-- build:vendorJS -->
+	<!-- endbuild -->
+	<!-- build:appJS -->
+	<!-- endbuild -->
+</body>
+
+</html>

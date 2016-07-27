@@ -3,6 +3,7 @@
     angular.module('gdsApp')
         .constant('vendors', {
             jQuery: $,
-            Socket: io
+            Socket: io,
+            pace: Pace
         });
 })();

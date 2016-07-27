@@ -24,6 +24,7 @@
     "bootstrap": "^3.3.7",
     "socket.io-client": "^1.4.8",
     "angular-resource": "^1.5.8",
-    "angular-ui-router": "ui-router#^0.3.1"
+    "angular-ui-router": "ui-router#^0.3.1",
+    "ng-bootstrap-alerts": "^1.1.1"
   }
 }
