@@ -1,8 +1,8 @@
 bower_components
 node_modules
 dist
-./index.html
 src/app/app.constant.js
 .env
 .idea
 *.log
+index.html
