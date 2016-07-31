@@ -9,13 +9,14 @@
 				timeInId: '<'
 			}
 		});
-	BarCodeController.$inject = ['BarcodeResourceService', 'PurposeResourceService', 'vendors', '$state', '$q'];
+	BarCodeController.$inject = ['BarcodeResourceService', 'PurposeResourceService', 'vendors', '$state', '$q','AlertService'];
 
-	function BarCodeController(BarcodeResourceService, PurposeResourceService, vendors, $state, $q) {
+	function BarCodeController(BarcodeResourceService, PurposeResourceService, vendors, $state, $q, AlertService) {
 		var barCode = this;
 		barCode.$onInit = onInit;
-		barCode.onSelectPurpose = onSelectPurpose;
+		barCode.otherPurpose = '';
 		barCode.backToHome = backToHome;
+		barCode.barCodeTimeIn = barCodeTimeIn;
 		barCode.isSubmitting = false;
 
 		function onInit() {
@@ -44,25 +45,40 @@
 			return deferred.promise;
 		}
 
-		function onSelectPurpose() {
-			if (barCode.entry.purpose) {
-				vendors.pace.restart();
-				barCode.isSubmitting = true;
-				BarcodeResourceService.checkInPurpose(barCode.timeInId, barCode.entry.purpose, function(err, result) {
-					if (err) {
-						console.error('err', err);
-						//redirect to error page
+		function processLogIn() {							
+			vendors.pace.restart();
+			barCode.isSubmitting = true;
+			BarcodeResourceService.checkInPurpose(barCode.timeInId, barCode.entry.purpose, function(err, result) {
+				if (err) {
+					console.error('err', err);
+
+					//redirect to error page
+				} else {
+					console.log(barCode.entry);
+					if(result.message === 'Ok'){
+						AlertService.showAlertSuccess = true;
 					} else {
-						backToHome();
+						AlertService.showAlertFail = true;
 					}
-					barCode.isSubmitting = false;
-					vendors.pace.stop();
-				});
-			}
+					backToHome();
+				}
+				barCode.isSubmitting = false;
+				vendors.pace.stop();
+			});
 		}
 
 		function backToHome() {
 			$state.go('home');
+		}
+
+		function barCodeTimeIn(){
+			if (barCode.entry.purpose === 'others') {
+				barCode.entry.purpose = barCode.otherPurpose;
+
+				processLogIn();
+			} else {
+				processLogIn();
+			}
 		}
 	}
 })();

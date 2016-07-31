@@ -13,6 +13,7 @@ var SRC_JS = [
   'src/app/app.module.js',
   'src/app/app.constant.js',
   'src/app/app.route.js',
+  'src/app/app.service.js',
   'src/app/app.vendor.js',
   'src/app/app.clock.directive.js',
   'src/bar-code/bar-code-resource.service.js',

@@ -11,6 +11,7 @@ var LIB_JS = [
   'bower_components/angular/angular.js',
   'bower_components/angular-resource/angular-resource.js',
   'bower_components/angular-ui-router/release/angular-ui-router.js',
+  'bower_components/angular-animate/angular-animate.js',
   'bower_components/jquery/dist/jquery.js',
   'bower_components/bootstrap/dist/js/bootstrap.js',
   'bower_components/socket.io-client/socket.io.js',

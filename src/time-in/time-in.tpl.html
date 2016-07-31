@@ -2,19 +2,27 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2 text-center">
 			<p class="sub-heading">Please enter your details</p>
+
 			<form ng-submit="timeIn.manualTimeIn()">
 				<input ng-disabled="timeIn.isSubmitting" type="text" ng-model="timeIn.user.firstName" class="form-control input-lg" placeholder="First Name">
+
 				<input ng-disabled="timeIn.isSubmitting" type="text" ng-model="timeIn.user.lastName" class="form-control input-lg" placeholder="Last Name">
-				<select ng-change='timeIn.onSelectPurpose()' ng-disabled="timeIn.isSubmitting || !timeIn.user || !timeIn.user.firstName || !timeIn.user.lastName" name="purpose" ng-model="timeIn.user.purpose" class="form-control input-lg">
+
+				<select ng-disabled="timeIn.isSubmitting" name="purpose" ng-model="timeIn.user.purpose" class="form-control input-lg">
 						<option disabled="disabled" selected="selected">Select a Purpose</option>
 						<option ng-repeat="purpose in timeIn.purposes" value="{{purpose.value}}">{{purpose.label}}</option>
-					</select>
+				</select>
+
+				<input ng-disabled="timeIn.isSubmitting" ng-show="timeIn.user.purpose == 'others'" type="text" ng-model="timeIn.otherPurpose" class="form-control input-lg" placeholder="Purpose">
+
 				<div class="row">
 					<div class="col-md-12">
-						<button ng-disabled="timeIn.isSubmitting" type="button" ui-sref="home" class="time-in btn btn-default btn-block btn-lg">Time in</button>
+						<button ng-disabled="timeIn.isSubmitting" type="submit" class="time-in btn btn-default btn-block btn-lg">Time in</button>
 					</div>
 				</div>
+
 			</form>
+
 		</div>
 	</div>
 </div>

@@ -3,14 +3,28 @@
 	
  body {
 	background-color: #bf9b30;
+	position: relative;
 	.main-wrap {
 	padding: 15px;
 	}
 	.main-wrap h1 {
 		color: #fff;
 		font-size: 150%;
-			margin: 0;
+		margin: 0;
 	}
+	.alert-container {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		min-width: 150px;
+
+		.alert {
+			transition: all linear 0.5s;
+		}
+		.alert.ng-hide {
+		  opacity: 0;
+		}
+	}	
 	.logo {
 		text-align: center;
 	}
@@ -40,5 +54,8 @@
 	.sub-heading {
 		font-size: 150%;
 	}
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
 

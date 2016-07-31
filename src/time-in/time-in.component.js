@@ -6,14 +6,15 @@
 			controllerAs: 'timeIn',
 			controller: TimeInComponent
 		});
-	TimeInComponent.$inject = ['PurposeResourceService', 'TimeInResourceService', 'vendors', '$state'];
+	TimeInComponent.$inject = ['PurposeResourceService', 'TimeInResourceService', 'vendors', '$state','AlertService'];
 
-	function TimeInComponent(PurposeResourceService, TimeInResourceService, vendors, $state) {
+	function TimeInComponent(PurposeResourceService, TimeInResourceService, vendors, $state,AlertService) {
 		var timeIn = this;
 		timeIn.user = {};
+		timeIn.manualTimeIn = manualTimeIn;
 		timeIn.$onInit = onInit;
-		timeIn.onSelectPurpose = onSelectPurpose;
 		timeIn.isSubmitting = false;
+		timeIn.otherPurpose = '';
 
 		function onInit() {
 			return PurposeResourceService.getPurposes(function(err, purposes) {
@@ -26,22 +27,42 @@
 			}).$promise;
 		}
 
-		function onSelectPurpose() {
-			if (timeIn.user) {
-				timeIn.isSubmitting = true;
-				vendors.pace.restart();
-				var fullname = timeIn.user.lastName + ', ' + timeIn.user.firstName;
-				var when = new Date().getTime();
-				TimeInResourceService.checkInVisitor(fullname, timeIn.user.purpose, when, function(err, result) {
-					if (err) {
-						//redirect to error page
-						console.error(err);
-					} else {
-						$state.go('home');
+		function manualTimeIn(){			
+			if (timeIn.user.firstName && timeIn.user.lastName && timeIn.user.purpose) {
+
+				if (timeIn.user.purpose === 'others'){
+					if (timeIn.otherPurpose){
+						timeIn.user.purpose = timeIn.otherPurpose;
+						processLogIn();
 					}
-					vendors.pace.stop();
-				});
+				} else {
+					processLogIn();
+				}
+				
 			}
+		}
+
+		function processLogIn(){
+			timeIn.isSubmitting = true;
+			vendors.pace.restart();
+			var fullname = timeIn.user.lastName + ', ' + timeIn.user.firstName;
+			var when = new Date().getTime();
+			TimeInResourceService.checkInVisitor(fullname, timeIn.user.purpose, when, function(err, result) {
+				if (err) {
+					//redirect to error page
+					console.error(err);
+				} else {
+					console.log(timeIn.user);
+
+					if(result.message === 'Ok'){
+						AlertService.showAlertSuccess = true;
+					} else {
+						AlertService.showAlertFail = true;
+					}
+					$state.go('home');
+				}
+				vendors.pace.stop();
+			});
 		}
 	}
 })();
