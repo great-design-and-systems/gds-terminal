@@ -1,17 +1,17 @@
-(function() {
+(function () {
   'use strict';
   angular.module('gdsApp')
     .service('BarcodeResourceService', BarcodeResourceService);
-  BarcodeResourceService.$inject = ['$resource', 'SCANNER_PROTOCOL', 'SCANNER_HOST', 'SCANNER_PORT', 'SCANNER_CONTEXT'];
+  BarcodeResourceService.$inject = ['$resource', 'API_HOST', 'SCANNER_CONTEXT'];
 
-  function BarcodeResourceService($resource, SCANNER_PROTOCOL, SCANNER_HOST, SCANNER_PORT, SCANNER_CONTEXT) {
-    var scannerResource = $resource(SCANNER_PROTOCOL + '://' + SCANNER_HOST + ':' + SCANNER_PORT + SCANNER_CONTEXT + ':action/:timeInID', {}, {
+  function BarcodeResourceService($resource, API_HOST, SCANNER_CONTEXT) {
+    var scannerResource = $resource(API_HOST + SCANNER_CONTEXT + ':action?param=timeInID::timeInID', {}, {
       checkInPurpose: {
         method: 'PUT',
         params: {
-          action: 'check-in-purpose'
+          action: 'checkInPurpose'
         },
-        url: SCANNER_PROTOCOL + '://' + SCANNER_HOST + ':' + SCANNER_PORT + SCANNER_CONTEXT + ':action/:timeInID'
+        url: SCANNER_PROTOCOL + '://' + API_HOST + SCANNER_CONTEXT + ':action?param=timeInID::timeInID'
       }
     });
     return {
@@ -21,11 +21,11 @@
 
     function getTimeInfo(timeInID, callback) {
       return scannerResource.get({
-        action: 'get-time-info',
+        action: 'getTimeInfo',
         timeInID: timeInID
-      }, function(data) {
+      }, function (data) {
         callback(undefined, data);
-      }, function(err) {
+      }, function (err) {
         callback(err);
       });
     }
@@ -34,9 +34,9 @@
       return scannerResource.checkInPurpose({
         timeInID: timeInID,
         purpose: purpose
-      }, function(data) {
+      }, function (data) {
         callback(undefined, data);
-      }, function(err) {
+      }, function (err) {
         callback(err);
       });
     }
