@@ -11,7 +11,7 @@
         params: {
           action: 'checkInPurpose'
         },
-        url: SCANNER_PROTOCOL + '://' + API_HOST + SCANNER_CONTEXT + ':action?param=timeInID::timeInID'
+        url: API_HOST + SCANNER_CONTEXT + ':action?param=timeInID::timeInID'
       }
     });
     return {
