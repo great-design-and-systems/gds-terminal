@@ -1,12 +1,8 @@
-(function() {
+(function () {
   'use strict';
   angular.module('gdsApp')
-    .constant('SCANNER_PROTOCOL', '#SCANNER_PROTOCOL')
-    .constant('SCANNER_HOST', '#SCANNER_HOST')
-    .constant('SCANNER_PORT', '#SCANNER_PORT')
+    .constant('API_HOST', '#API_HOST')
     .constant('SCANNER_CONTEXT', '#SCANNER_CONTEXT')
-    .constant('CONFIG_PROTOCOL', '#CONFIG_PROTOCOL')
-    .constant('CONFIG_HOST', '#CONFIG_HOST')
-    .constant('CONFIG_PORT', '#CONFIG_PORT')
-    .constant('CONFIG_CONTEXT', '#CONFIG_CONTEXT');
+    .constant('CONFIG_CONTEXT', '#CONFIG_CONTEXT')
+    .constant('SCHOOL_ID', '#SCHOOL_ID');
 })();

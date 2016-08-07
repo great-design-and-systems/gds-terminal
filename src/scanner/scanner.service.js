@@ -1,22 +1,21 @@
-(function() {
+(function () {
   'use strict';
   angular.module('gdsApp')
     .service('ScannerService', ScannerService)
-    .run(function(ScannerService) {
+    .run(function (ScannerService) {
       ScannerService.startScanner();
     });
 
-  ScannerService.$inject = ['vendors', 'SCANNER_PROTOCOL', 'SCANNER_HOST', 'SCANNER_PORT', '$state'];
+  ScannerService.$inject = ['vendors', 'API_HOST', '$state'];
 
-  function ScannerService(vendors, PROTOCOL, HOST, PORT, $state) {
+  function ScannerService(vendors, API_HOST, $state) {
     return {
       startScanner: startScanner
     };
 
     function startScanner() {
-      var server = PROTOCOL + '://' + HOST + ':' + PORT;
-      var socket = vendors.Socket.connect(server);
-      socket.on('scanned', function(info) {
+      var socket = vendors.Socket.connect(API_HOST);
+      socket.on('scanned', function (info) {
         console.log('scanned', info);
         if (info && info.timeInID) {
           $state.go('barcode', {

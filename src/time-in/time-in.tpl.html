@@ -9,11 +9,11 @@
 				<input ng-disabled="timeIn.isSubmitting" type="text" ng-model="timeIn.user.lastName" class="form-control input-lg" placeholder="Last Name">
 
 				<select ng-disabled="timeIn.isSubmitting" name="purpose" ng-model="timeIn.user.purpose" class="form-control input-lg">
-						<option disabled="disabled" selected="selected">Select a Purpose</option>
-						<option ng-repeat="purpose in timeIn.purposes" value="{{purpose.value}}">{{purpose.label}}</option>
+					<option disabled="disabled" selected="selected">Select a Purpose</option>
+					<option ng-repeat="purpose in timeIn.purposes" value="{{purpose.codeValue}}">{{purpose.codeValue}}</option>
 				</select>
 
-				<input ng-disabled="timeIn.isSubmitting" ng-show="timeIn.user.purpose == 'others'" type="text" ng-model="timeIn.otherPurpose" class="form-control input-lg" placeholder="Purpose">
+				<input ng-disabled="timeIn.isSubmitting" ng-show="timeIn.user.purpose == 'Others'" type="text" ng-model="timeIn.otherPurpose" class="form-control input-lg" placeholder="Purpose">
 
 				<div class="row">
 					<div class="col-md-12">

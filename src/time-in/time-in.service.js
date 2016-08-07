@@ -1,17 +1,17 @@
-(function() {
+(function () {
 	'use strict';
 	angular.module('gdsApp')
 		.service('TimeInResourceService', BarcodeResourceService);
-	BarcodeResourceService.$inject = ['$resource', 'SCANNER_PROTOCOL', 'SCANNER_HOST', 'SCANNER_PORT', 'SCANNER_CONTEXT'];
+	BarcodeResourceService.$inject = ['$resource', 'API_HOST', 'SCANNER_CONTEXT'];
 
-	function BarcodeResourceService($resource, SCANNER_PROTOCOL, SCANNER_HOST, SCANNER_PORT, SCANNER_CONTEXT) {
-		var timeInResource = $resource(SCANNER_PROTOCOL + '://' + SCANNER_HOST + ':' + SCANNER_PORT + SCANNER_CONTEXT + ':action', {}, {
+	function BarcodeResourceService($resource, API_HOST, SCANNER_CONTEXT) {
+		var timeInResource = $resource(API_HOST + SCANNER_CONTEXT + ':action', {}, {
 			checkInVisitor: {
 				method: 'POST',
 				params: {
-					action: 'check-in-visitor'
+					action: 'checkInVisitor'
 				},
-				url: SCANNER_PROTOCOL + '://' + SCANNER_HOST + ':' + SCANNER_PORT + SCANNER_CONTEXT + ':action'
+				url: API_HOST + SCANNER_CONTEXT + ':action'
 			}
 		});
 
@@ -24,9 +24,9 @@
 				fullname: fullname,
 				purpose: purpose,
 				when: when
-			}, function(success) {
+			}, function (success) {
 				callback(undefined, success);
-			}, function(err) {
+			}, function (err) {
 				callback(err);
 			});
 		}

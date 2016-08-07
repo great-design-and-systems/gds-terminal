@@ -8,7 +8,7 @@
 						<option disabled="disabled" selected="selected">Select a Purpose</option>
 						<option ng-repeat="purpose in barCode.purposes" value="{{purpose.value}}">{{purpose.label}}</option>
 					</select>
-					<input ng-disabled="barCode.isSubmitting" ng-show="barCode.entry.purpose == 'others'" type="text" ng-model="barCode.otherPurpose" class="form-control input-lg" placeholder="State Purpose">
+					<input ng-disabled="barCode.isSubmitting" ng-show="barCode.entry.purpose == 'Others'" type="text" ng-model="barCode.otherPurpose" class="form-control input-lg" placeholder="State Purpose">
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2 profile-img">
 							<img ng-src="img/default-profile.png" alt="" />
