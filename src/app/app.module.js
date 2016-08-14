@@ -1,4 +1,4 @@
 (function() {
-  'use strict';
-  angular.module('gdsApp', ['ui.router', 'ngResource','ngAnimate']);
+    'use strict';
+    angular.module('gdsApp', ['ui.router', 'ngResource']);
 })();
