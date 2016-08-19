@@ -8,7 +8,7 @@
         "postinstall": "bower update -V && gulp",
         "server": "./node_modules/.bin/http-server",
         "start": "npm run server",
-        "container": "gulp pull && npm run server"
+        "container": "gulp pull && gulp && npm run server"
     },
     "repository": {
         "type": "git",
