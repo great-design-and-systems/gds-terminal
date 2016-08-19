@@ -3,7 +3,7 @@ var SCANNER_CONTEXT = process.env.SCANNER_CONTEXT || '/gds/timeServicePort/';
 var CONFIG_CONTEXT = process.env.CONFIG_CONTEXT || '/gds/schoolConfigServicePort/';
 var API_HOST = process.env.API_HOST || 'http://localhost:8080';
 var SCHOOL_ID = process.env.SCHOOL_ID || '57a60c8d9b19871d0010f0dd'; //Assumption college id
-
+var git = require('gulp-git');
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var htmlreplace = require('gulp-html-replace');
@@ -46,4 +46,10 @@ gulp.task('set-contant-values', function() {
         .pipe(replace('#CONFIG_CONTEXT', CONFIG_CONTEXT))
         .pipe(replace('#SCHOOL_ID', SCHOOL_ID))
         .pipe(gulp.dest('src/app/'));
+}); 
+// Run git pull from multiple branches 
+gulp.task('pull', function() {
+    git.pull('origin', ['master'], function(err) {
+        if (err) throw err;
+    });
 });

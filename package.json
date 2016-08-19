@@ -1,44 +1,46 @@
 {
-  "name": "gds-terminal",
-  "version": "0.1.0",
-  "description": "GDS terminal interface",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "./node_modules/.bin/gulp",
-    "bower": "./node_modules/.bin/bower",
-    "postinstall": "bower update -V && gulp",
-    "server": "./node_modules/.bin/http-server",
-    "start": "npm run server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/great-design-and-systems/gds-terminal.git"
-  },
-  "keywords": [
-    "gds-terminal"
-  ],
-  "author": "Jerico de Guzman",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/great-design-and-systems/gds-terminal/issues"
-  },
-  "homepage": "https://github.com/great-design-and-systems/gds-terminal#readme",
-  "dependencies": {
-    "bower": "^1.7.9",
-    "gulp": "^3.9.1",
-    "gulp-angular-templates": "0.0.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-html-replace": "^1.6.1",
-    "gulp-jshint": "^2.0.1",
-    "gulp-replace": "^0.5.4",
-    "gulp-sass": "^2.3.2",
-    "gulp-uglify": "^1.5.4",
-    "gulp-uglifycss": "^1.0.6",
-    "http-server": "^0.9.0",
-    "jshint": "^2.9.2",
-    "node-sass": "^3.8.0",
-    "pump": "^1.0.1",
-    "run-sequence": "^1.2.2"
-  }
+    "name": "gds-terminal",
+    "version": "0.1.0",
+    "description": "GDS terminal interface",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "gulp": "./node_modules/.bin/gulp",
+        "bower": "./node_modules/.bin/bower",
+        "postinstall": "bower update -V && gulp",
+        "server": "./node_modules/.bin/http-server",
+        "start": "npm run server",
+        "container": "npm run gulp pull && npm run server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/great-design-and-systems/gds-terminal.git"
+    },
+    "keywords": [
+        "gds-terminal"
+    ],
+    "author": "Jerico de Guzman",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/great-design-and-systems/gds-terminal/issues"
+    },
+    "homepage": "https://github.com/great-design-and-systems/gds-terminal#readme",
+    "dependencies": {
+        "bower": "^1.7.9",
+        "gulp": "^3.9.1",
+        "gulp-angular-templates": "0.0.2",
+        "gulp-concat": "^2.6.0",
+        "gulp-git": "^1.11.0",
+        "gulp-html-replace": "^1.6.1",
+        "gulp-jshint": "^2.0.1",
+        "gulp-replace": "^0.5.4",
+        "gulp-sass": "^2.3.2",
+        "gulp-uglify": "^1.5.4",
+        "gulp-uglifycss": "^1.0.6",
+        "http-server": "^0.9.0",
+        "jshint": "^2.9.2",
+        "node-sass": "^3.8.0",
+        "pump": "^1.0.1",
+        "run-sequence": "^1.2.2"
+    }
 }
