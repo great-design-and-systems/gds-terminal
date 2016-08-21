@@ -10,7 +10,7 @@ var htmlreplace = require('gulp-html-replace');
 var replace = require('gulp-replace');
 var appTasks = new require('./gulp-tasks/app-tasks')(gulp);
 new require('./gulp-tasks/vendor-tasks')(gulp);
-
+var bower = require('gulp-bower');
 gulp.task('default', function() {
     runSequence('vendor-build', 'set-contant-values', 'app-build', 'html-prod');
 });
@@ -46,10 +46,14 @@ gulp.task('set-contant-values', function() {
         .pipe(replace('#CONFIG_CONTEXT', CONFIG_CONTEXT))
         .pipe(replace('#SCHOOL_ID', SCHOOL_ID))
         .pipe(gulp.dest('src/app/'));
-}); 
+});
 // Run git pull from multiple branches 
 gulp.task('pull', function() {
     git.pull('origin', ['master'], function(err) {
         if (err) throw err;
     });
+});
+
+gulp.task('bower', function() {
+    return bower({ cmd: 'update' });
 });

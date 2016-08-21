@@ -8,7 +8,7 @@
         "postinstall": "bower update -V && gulp",
         "server": "./node_modules/.bin/http-server",
         "start": "npm run server",
-        "container": "gulp pull && gulp && npm run server"
+        "container": "gulp pull && gulp bower && gulp && npm run server"
     },
     "repository": {
         "type": "git",
@@ -27,6 +27,7 @@
         "bower": "^1.7.9",
         "gulp": "^3.9.1",
         "gulp-angular-templates": "0.0.2",
+        "gulp-bower": "0.0.13",
         "gulp-concat": "^2.6.0",
         "gulp-git": "^1.11.0",
         "gulp-html-replace": "^1.6.1",
