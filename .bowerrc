@@ -1,0 +1,4 @@
+{
+    "proxy": "proxy.assumption.edu.ph:3128",
+    "https-proxy": "proxy.assumption.edu.ph:3128"
+}
