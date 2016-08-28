@@ -5,10 +5,13 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "bower update -V && gulp",
+        "gulp": "./node_modules/.bin/gulp",
+        "bower": "./node_modules/.bin/bower",
+        "postinstall": "gulp bower && gulp",
         "server": "./node_modules/.bin/http-server",
         "start": "npm run server",
-        "container": "gulp pull && gulp bower && gulp && npm run server"
+        "debug": "npm run gulp debug",
+        "container": "npm run gulp pull && gulp bower && gulp && npm run server"
     },
     "repository": {
         "type": "git",
