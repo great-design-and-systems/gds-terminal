@@ -9,7 +9,7 @@
         "bower": "./node_modules/.bin/bower",
         "postinstall": "gulp bower && gulp",
         "server": "./node_modules/.bin/http-server",
-        "start": "npm run server",
+        "start": "npm run gulp && npm run server",
         "debug": "npm run gulp debug",
         "container": "npm run gulp pull && gulp bower && gulp && npm run server"
     },
