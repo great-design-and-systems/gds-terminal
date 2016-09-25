@@ -4,23 +4,32 @@
             <h2>{{barCode.entry.fullname}}</h2>
             <div class="text-center">
                 <form role="form" ng-submit="barCode.barCodeTimeIn()">
-                    <select name="purpose" ng-disabled="barCode.isSubmitting" ng-model="barCode.entry.purpose" class="form-control input-lg">
-						<option disabled="disabled" selected="selected">Select a Purpose</option>
-						<option ng-repeat="purpose in barCode.purposes" value="{{purpose.codeValue}}">{{purpose.codeValue}}</option>
-					</select>
-                    <input ng-disabled="barCode.isSubmitting" ng-show="barCode.entry.purpose == 'Others'" type="text" ng-model="barCode.otherPurpose" class="form-control input-lg" placeholder="State Purpose">
+                    <select name="purpose" ng-disabled="barCode.isSubmitting" ng-model="barCode.entry.purpose"
+                            class="form-control input-lg">
+                        <option disabled="disabled" selected="selected">Select a Purpose</option>
+                        <option ng-repeat="purpose in barCode.purposes" value="{{purpose.codeValue}}">
+                            {{purpose.codeValue}}
+                        </option>
+                    </select>
+                    <input ng-disabled="barCode.isSubmitting" ng-show="barCode.entry.purpose == 'Others'" type="text"
+                           ng-model="barCode.otherPurpose" class="form-control input-lg" placeholder="State Purpose">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 profile-img">
-                            <img ng-src="img/default-profile.png" alt="" />
+                            <img ng-if="!barCode.entry.imageId" ng-src="img/default-profile.png" alt=""/>
+                            <img ng-if="barCode.entry.imageId" ng-src="{{barCode.avatarLink}}" alt=""/>
                         </div>
                     </div>
                     <p class="department sub-heading">{{barCode.entry.department}}</p>
                     <div class="row">
                         <div class="col-md-6 no-padding-right">
-                            <button ng-disabled="barCode.isSubmitting" type="button" class="time-in btn btn-default btn-block btn-lg" ui-sref="timeIn">Visitors</button>
+                            <button ng-disabled="barCode.isSubmitting" type="button"
+                                    class="time-in btn btn-default btn-block btn-lg" ui-sref="timeIn">Visitors
+                            </button>
                         </div>
                         <div class="col-md-6 no-padding-right">
-                            <button ng-disabled="barCode.isSubmitting" type="submit" class="time-in btn btn-default btn-block btn-lg">Submit</button>
+                            <button ng-disabled="barCode.isSubmitting" type="submit"
+                                    class="time-in btn btn-default btn-block btn-lg">Submit
+                            </button>
                         </div>
                     </div>
                 </form>

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     angular.module('gdsApp')
         .component('barCode', {
@@ -9,9 +9,9 @@
                 timeInId: '<'
             }
         });
-    BarCodeController.$inject = ['BarcodeResourceService', 'PurposeResourceService', 'vendors', '$state', '$q', 'AlertService'];
+    BarCodeController.$inject = ['BarcodeResourceService', 'PurposeResourceService', 'vendors', '$state', '$q', 'AlertService', 'DownloaderService'];
 
-    function BarCodeController(BarcodeResourceService, PurposeResourceService, vendors, $state, $q, AlertService) {
+    function BarCodeController(BarcodeResourceService, PurposeResourceService, vendors, $state, $q, AlertService, DownloaderService) {
         var barCode = this;
         barCode.$onInit = onInit;
         barCode.otherPurpose = '';
@@ -23,13 +23,13 @@
             vendors.pace.restart();
             var deferred = $q.defer();
 
-            BarcodeResourceService.getTimeInfo(barCode.timeInId, function(err, timeInfo) {
+            BarcodeResourceService.getTimeInfo(barCode.timeInId, function (err, timeInfo) {
                 if (err) {
                     //redirect to error page
                     deferred.reject(err);
                 } else {
                     barCode.entry = timeInfo;
-                    PurposeResourceService.getPurposes(function(err, purposes) {
+                    PurposeResourceService.getPurposes(function (err, purposes) {
                         if (err) {
                             //redirect to error page
                             deferred.reject(err);
@@ -39,6 +39,9 @@
                         }
 
                     });
+                    if (barCode.entry.imageId) {
+                        barCode.avatarLink = DownloaderService.createRawFileLink(barCode.entry.imageId) + '&cb=' + (new Date()).toString();
+                    }
                 }
             });
 
@@ -48,7 +51,7 @@
         function processLogIn() {
             vendors.pace.restart();
             barCode.isSubmitting = true;
-            BarcodeResourceService.checkInPurpose(barCode.timeInId, barCode.entry.purpose, function(err, result) {
+            BarcodeResourceService.checkInPurpose(barCode.timeInId, barCode.entry.purpose, function (err, result) {
                 if (err) {
                     console.error('err', err);
                     AlertService.showAlertFail = true;
