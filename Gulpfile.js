@@ -22,6 +22,7 @@ gulp.task('debug', function () {
 gulp.task('html-dev', function () {
     return gulp.src('html-build/index.html')
         .pipe(htmlreplace({
+            socket: API_HOST + '/socket.io/socket.io.js',
             appJS: appTasks.SRC_JS,
             appCSS: 'dist/app.css',
             vendorJS: 'dist/vendors.js',
@@ -33,6 +34,7 @@ gulp.task('html-dev', function () {
 gulp.task('html-prod', function () {
     return gulp.src('html-build/index.html')
         .pipe(htmlreplace({
+            socket: API_HOST + '/socket.io/socket.io.js',
             appJS: 'dist/release/app.js',
             appCSS: 'dist/release/app.css',
             vendorJS: 'dist/release/vendors.js',
@@ -58,5 +60,5 @@ gulp.task('pull', function () {
 });
 
 gulp.task('bower', function () {
-    return bower({cmd: 'update'});
+    return bower({ cmd: 'update' });
 });
