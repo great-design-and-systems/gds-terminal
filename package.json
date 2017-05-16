@@ -9,6 +9,8 @@
         "bower": "./node_modules/.bin/bower",
         "postinstall": "gulp bower && gulp",
         "server": "./node_modules/.bin/http-server",
+        "server-local": "./node_modules/.bin/http-server -p 8085",
+        "local": "npm run gulp && npm run server-local",
         "start": "npm run gulp && npm run server",
         "debug": "npm run gulp debug",
         "container-start": "/bin/bash /app/scripts/start.sh",
